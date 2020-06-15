@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Reviews
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Reviews</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-button (click)="writeReviewAlert()">
+          Inserisci la tua recensione
+        </ion-button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngFor="let review of reviews">
+    <ion-item>
+      <ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <i>{{review.author}}</i>
+            </ion-col>
+            <ion-col class="ion-align-self-end">
+              <b>{{review.rating}} ⭐</b>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <h2>{{review.text}}</h2>
+          </ion-row>
+          <ion-row>
+            <ion-button>
+              👍 {{review.likes}}
+            </ion-button>
+          </ion-row>
+        </ion-grid>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>
