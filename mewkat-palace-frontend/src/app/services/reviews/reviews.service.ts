@@ -40,5 +40,8 @@ export class ReviewsService {
     return reviews;
   }
 
+  async sendReview(review: Review) {
+    // this.reviews.push(review);
+  }
 
 }

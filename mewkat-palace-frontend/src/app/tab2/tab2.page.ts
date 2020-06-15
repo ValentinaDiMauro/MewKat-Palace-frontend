@@ -45,10 +45,31 @@ export class Tab2Page {
           placeholder: 'Scrivi un commento... (opzionale)'
         }
       ],
-      buttons: ['Annulla', 'Invia']
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel'
+        },{
+          text: 'Invia',
+          handler: (alertData) => {
+            this.sendReview(alertData.comment, alertData.code, alertData.rating);
+          }
+        }
+      ]
     });
 
     await alert.present();
+  }
+
+  async sendReview(text, code, rating) {
+    // this.reviewsService.sendReview();
+    this.reviews.push({
+      _id: "-1",
+      text: text,
+      author: code,
+      rating: rating,
+      likes: 0
+    });
   }
 
   async getReviews() {
