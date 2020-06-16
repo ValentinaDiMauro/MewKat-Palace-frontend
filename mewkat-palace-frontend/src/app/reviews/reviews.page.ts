@@ -6,11 +6,11 @@ import { Review } from 'src/app/interfaces/review'
 import { ReviewsService } from 'src/app/services/reviews/reviews.service'
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-reviews',
+  templateUrl: 'reviews.page.html',
+  styleUrls: ['reviews.page.scss']
 })
-export class Tab2Page {
+export class ReviewsPage {
   reviews: Review[] = [];
 
   constructor(
