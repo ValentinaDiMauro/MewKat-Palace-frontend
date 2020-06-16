@@ -19,29 +19,23 @@ export class ReviewsService {
   ) {}
 
   async getReviews() {
-    // return this.http.get<Review[]>(`API_URL/reviews`).toPromise();
-
-    let reviews: Review[] = [
-        {
-            _id: "0",
-            text: "Test",
-            author: "Salvatore Riccobene",
-            rating: 4,
-            likes: 0
-        },{
-            _id: "1",
-            text: "Test",
-            author: "Franco Barbanera",
-            rating: 2,
-            likes: 10
-        }
-    ];
-
-    return reviews;
+    return this.http.get<Review[]>(`http://127.0.0.1:3000/reviews`, this.httpOptions).toPromise();
   }
 
-  async sendReview(review: Review) {
+  async sendReview(token, stars, message) {
     // this.reviews.push(review);
+    this.http.post<any>(`http://127.0.0.1:3000/reviews`, {
+      "token": token,
+      "stars": stars,
+      "message": message
+    }, this.httpOptions).toPromise();
+  }
+  
+  async addLike(reviewId) {
+    this.http.post<any>(`http://127.0.0.1:3000/reviews/addLike/` + reviewId, this.httpOptions).toPromise();
   }
 
+  async addDislike(reviewId) {
+    this.http.post<any>(`http://127.0.0.1:3000/reviews/addDislike/` + reviewId, this.httpOptions).toPromise();
+  }
 }

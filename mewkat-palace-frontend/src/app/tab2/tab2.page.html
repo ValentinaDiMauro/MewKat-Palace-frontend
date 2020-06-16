@@ -34,16 +34,19 @@
               <i>{{review.author}}</i>
             </ion-col>
             <ion-col class="ion-align-self-end">
-              <b>{{review.rating}} ⭐</b>
+              <b>{{review.stars}} ⭐</b>
             </ion-col>
           </ion-row>
           <ion-row>
             <h2>{{review.text}}</h2>
           </ion-row>
           <ion-row>
-            <ion-button>
-              👍 {{review.likes}}
-            </ion-button>
+            <ion-col>
+              <ion-button (click)="addLike(review._id)">👍 {{ review.like }}</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button  (click)="addDislike(review._id)">👎 {{ review.dislike }}</ion-button>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-label>

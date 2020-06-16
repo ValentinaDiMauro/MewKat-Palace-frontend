@@ -33,9 +33,9 @@ export class Tab2Page {
           placeholder: 'Codice prenotazione'
         },
         {
-          name: 'rating',
+          name: 'stars',
           type: 'number',
-          placeholder: 'Rating ⭐',
+          placeholder: 'stars ⭐',
           min: 0,
           max: 5 
         },
@@ -52,7 +52,7 @@ export class Tab2Page {
         },{
           text: 'Invia',
           handler: (alertData) => {
-            this.sendReview(alertData.comment, alertData.code, alertData.rating);
+            this.sendReview(alertData.code, alertData.stars, alertData.comment);
           }
         }
       ]
@@ -61,18 +61,25 @@ export class Tab2Page {
     await alert.present();
   }
 
-  async sendReview(text, code, rating) {
-    // this.reviewsService.sendReview();
-    this.reviews.push({
-      _id: "-1",
-      text: text,
-      author: code,
-      rating: rating,
-      likes: 0
-    });
+  async sendReview(code, stars, message) {
+    this.reviewsService.sendReview(code, stars, message);
+
+    this.getReviews();
   }
 
   async getReviews() {
     this.reviews = await this.reviewsService.getReviews();
+  }
+
+  async addLike(reviewId) {
+    this.reviewsService.addLike(reviewId);
+
+    this.getReviews();
+  }
+
+  async addDislike(reviewId) {
+    this.reviewsService.addDislike(reviewId);
+
+    this.getReviews();
   }
 }
