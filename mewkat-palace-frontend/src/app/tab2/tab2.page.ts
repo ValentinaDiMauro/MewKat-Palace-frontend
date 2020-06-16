@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 import { Review } from 'src/app/interfaces/review'
 import { ReviewsService } from 'src/app/services/reviews/reviews.service'
@@ -14,6 +15,7 @@ export class Tab2Page {
 
   constructor(
     private reviewsService: ReviewsService,
+    private storage: Storage,
     public alertController: AlertController
   ) { }
 
@@ -74,6 +76,8 @@ export class Tab2Page {
   async addLike(reviewId) {
     this.reviewsService.addLike(reviewId);
 
+    this.saveOpinionedReviewId(reviewId);
+
     this.getReviews();
   }
 
@@ -81,5 +85,9 @@ export class Tab2Page {
     this.reviewsService.addDislike(reviewId);
 
     this.getReviews();
+  }
+
+  saveOpinionedReviewId(reviewId) {
+    // TODO
   }
 }
